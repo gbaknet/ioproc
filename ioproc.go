@@ -31,7 +31,7 @@ func IsJSON(s string) bool {
 
 }
 func DeleteGzip(path string, filenameWithoutFormat string) {
-	if fileExistGzip(path, filenameWithoutFormat) {
+	if FileExistGzip(path, filenameWithoutFormat) {
 		err := os.Remove(filepath.Join(path, filenameWithoutFormat+".gz"))
 		if err != nil {
 			println(err.Error())
@@ -74,7 +74,7 @@ func ReadGzip(path string, filenameWithoutFormat string) string {
 
 }
 func WriteGzipStr(path string, filenameWithoutFormat string, data string) {
-	writeGzip(path, filenameWithoutFormat, []byte(data))
+	WriteGzip(path, filenameWithoutFormat, []byte(data))
 }
 func WriteGzip(path string, filenameWithoutFormat string, data []byte) {
 	f, _ := os.Create(filepath.Join(path, filenameWithoutFormat+".gz"))
@@ -111,7 +111,7 @@ func Directoryexist(path string) bool {
 }
 
 func Createdirectory(path string, folderName string) {
-	if !directoryexist(filepath.Join(path, folderName)) {
+	if !Directoryexist(filepath.Join(path, folderName)) {
 		os.MkdirAll(filepath.Join(path, folderName), 0777)
 	}
 }
@@ -132,8 +132,8 @@ func WriteFileStr(filename string, data string) {
 }
 
 func AppendFileStr(filename string, data string, newLine bool) bool {
-	if !fileExist(filename) {
-		writeFileStr(filename, "")
+	if !FileExist(filename) {
+		WriteFileStr(filename, "")
 	}
 	//os.OpenFile(path, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	f, err := os.OpenFile(filename, os.O_APPEND, 0600)
